@@ -43,7 +43,7 @@ class ShoppingCartTest {
         assertEquals(8, prodQtyMap.get(product1));
 
         BigDecimal totalPrice = cart.getTotalPrice();
-        assertEquals(new BigDecimal(319.92).setScale(2, RoundingMode.HALF_UP), totalPrice);
+        assertEquals(BigDecimal.valueOf(319.92).setScale(2), totalPrice);
     }
 
     @Test
@@ -54,7 +54,7 @@ class ShoppingCartTest {
 
         cart.addProduct(product1, 2);
         cart.addProduct(product2, 2);
-        cart.setTaxRate(new BigDecimal(12.5F).setScale(2));
+        cart.setTaxRate(BigDecimal.valueOf(12.5F));
 
         Map<Product, Integer> productQtyMap = cart.getProductAndQuantityMap();
         assertNotNull(productQtyMap);
@@ -67,10 +67,10 @@ class ShoppingCartTest {
         assertEquals(2, productQtyMap.get(product2));
 
         BigDecimal totalTax = cart.getTotalTax();
-        assertEquals(new BigDecimal(35.00F).setScale(2), totalTax);
+        assertEquals(BigDecimal.valueOf(35.00).setScale(2), totalTax);
 
         BigDecimal totalPrice = cart.getTotalPrice();
-        assertEquals(new BigDecimal(314.96F).setScale(2, RoundingMode.HALF_UP), totalPrice);
+        assertEquals(BigDecimal.valueOf(314.96).setScale(2), totalPrice);
     }
 
 }

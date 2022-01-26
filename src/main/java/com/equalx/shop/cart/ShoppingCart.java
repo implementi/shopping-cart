@@ -43,16 +43,16 @@ public class ShoppingCart {
     public BigDecimal getTotalPrice() {
         BigDecimal sum = getItemSum();
         if (this.taxRate != null) {
-            sum = sum.add(sum.multiply(taxRate.divide(new BigDecimal(100))));
+            sum = sum.add(sum.multiply(taxRate.divide(BigDecimal.valueOf(100))));
         }
         return sum.setScale(3, RoundingMode.HALF_UP).setScale(2, RoundingMode.HALF_UP);
     }
 
     public BigDecimal getTotalTax() {
         BigDecimal value = BigDecimal.ZERO;
-        if (this.taxRate != null && this.taxRate.compareTo(new BigDecimal(0)) > 0) {
+        if (this.taxRate != null && this.taxRate.compareTo(BigDecimal.ZERO) > 0) {
             value = this.getItemSum()
-                    .multiply(this.taxRate.divide(new BigDecimal(100)))
+                    .multiply(this.taxRate.divide(BigDecimal.valueOf(100)))
                     .setScale(3, RoundingMode.HALF_UP)
                     .setScale(2, RoundingMode.HALF_UP);
         }
